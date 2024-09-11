@@ -3,6 +3,8 @@ class Solution(object):
         """
         :type tokens: List[str]
         :rtype: int
+        small change
+
         """
         stack = []
         for i in range(len(t)) :
