@@ -47,3 +47,28 @@
 // - `0 <= grid[i][j] <= 100
 `
 
+class Solution {
+public:
+    int dfs(int i, int j1, int j2, vector<vector<int>> &grid, vector<vector<vector<int>>> &dp) {
+        if (j1 < 0 || j1 >= grid[0].size() || j2 < 0 || j2>= grid[0].size()) {
+            return -1e8;
+        }
+        if (i == grid.size()-1) {
+            if (j1 == j2) return grid[i][j1];
+            else return grid[i][j1] + grid[i][j2];
+        }
+        if (dp[i][j1][j2] != -1) return dp[i][j1][j2];
+        int ans = -1e8;
+        for (int di = -1; di <= 1; di++) {
+            for (int dj = -1; dj <= 1; dj++) {
+                if (j1 == j2) ans = max(ans,grid[i][j1] + dfs(i+1, j1 + di, j2 + dj, grid, dp));
+                else ans = max(ans,grid[i][j1] + grid[i][j2] + dfs(i+1, j1 + di, j2 + dj, grid, dp));
+            }
+        }
+        return dp[i][j1][j2] = ans;
+    }
+    int cherryPickup(vector<vector<int>>& grid) {
+        vector<vector<vector<int>>> dp(grid.size(), vector<vector<int>>(grid[0].size(), vector<int> (grid[0].size(), -1)));
+        return dfs(0, 0, grid[0].size() -1, grid, dp);
+    }
+};
