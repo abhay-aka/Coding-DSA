@@ -21,18 +21,8 @@ public:
         }
         sort(x.begin(), x.end());
         sort(y.begin(), y.end());
-        // for (auto it: x) {
-        //     cout<<it.first<<" "<<it.second<<", ";
-        // }
-        // cout<<endl;
-        // for (auto it: y) {
-        //     cout<<it.first<<" "<<it.second<<", ";
-        // }
-        // cout<<endl;
-        // return true;
         int ansx = merge(x);
         int ansy = merge(y);
-        cout<<ansx<<" "<<ansy<<" "<<endl;
         if (ansx > 2 || ansy > 2) return true;
         return false;
 
